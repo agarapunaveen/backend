@@ -8,32 +8,29 @@ pipeline {
         disableConcurrentBuilds()
     }
    
-    // environment{
-    //    def appVersion = ''
-    // }
+    environment{
+       def appVersion = ''
+    }
     stages {
         stage('read the version'){
             steps{
 
               script { 
                 def packageJson = readJSON file: 'package.json'
-                 def appVersion = packageJson.version
-                    echo "application version:$appVersion"
+                    appVersion = packageJson.version
+                    echo "application version: $appVersion"
                 }
             }
         }
-        stage('Install the dependencies') {
+        stage('Install dependencies') {
             steps {
                 sh """
                  npm install
                  ls -ltr
-                 echo "application version:$appVersion"
+                 echo "application version: $appVersion"
                 """
             }
         }
-       
-        
-       
     }
         post {
             always{
