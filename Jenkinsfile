@@ -16,7 +16,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh """
-                 ls -ltr
+                 npm install
                 """
             }
         }
