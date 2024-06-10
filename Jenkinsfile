@@ -9,7 +9,7 @@ pipeline {
     }
    
     environment{
-       def appVersion=""
+       def appVersion = ''
     }
     stages {
         stage('read the version'){
