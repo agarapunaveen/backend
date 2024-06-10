@@ -9,14 +9,22 @@ pipeline {
     }
    
     environment{
-        Deploy_to = "production"
-        greetings = "good mornint"
+       def appVersion=""
     }
     stages {
-        stage('Init') {
+        stage('read the version'){
+            steps{
+                def packageJson = readJSON file: 'package.json'
+                    appVersion = packageJson.version
+                    echo "application version:$appVersion"
+            }
+        }
+        stage('Install the dependencies') {
             steps {
                 sh """
                  npm install
+                 ls -ltr
+                 echo "application version:$appVersion"
                 """
             }
         }
