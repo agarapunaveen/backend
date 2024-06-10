@@ -8,14 +8,14 @@ pipeline {
         disableConcurrentBuilds()
     }
    
-    environment{
-       def appVersion = ''
-    }
+    // environment{
+    //    def appVersion = ''
+    // }
     stages {
         stage('read the version'){
             steps{
                 def packageJson = readJSON file: 'package.json'
-                    appVersion = packageJson.version
+                 def appVersion = packageJson.version
                     echo "application version:$appVersion"
             }
         }
