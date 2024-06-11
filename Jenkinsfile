@@ -62,7 +62,7 @@ pipeline {
             }
         }
         stage("deploy"){
-            stage{
+            steps{
                
                 script{
                      def params =[
