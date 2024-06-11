@@ -61,6 +61,16 @@ pipeline {
               }
             }
         }
+        stage("deploy"){
+            stage{
+                def params =[
+                       string(name: 'appVersion',value="${appVersion}")
+                ]
+                script{
+                     build job: 'backend-deploy', parameters: params,wait: false
+                }
+            }
+        }
     }
         post {
             always{
